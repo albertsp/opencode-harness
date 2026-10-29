@@ -18,6 +18,35 @@ Run these exactly. Use the narrowest command that verifies the change first, the
 - Build: `<build command>`
 - Dev server: `<dev command, or "none">`
 
+## Stack commands
+Fill in the block for your stack. Remove the others. Each block names the skill agents should load for that stack.
+
+### React + TypeScript (skill: node-typescript)
+- Lint: `<lint command>`
+- Typecheck: `<tsc --noEmit or project typecheck script>`
+- Test (single file): `<e.g. pnpm vitest run path/to/file.test.tsx>`
+- Test (full): `<full test command>`
+- UI check: `<e.g. npx impeccable detect src/, or "none">`
+
+### Node.js + TypeScript (skill: node-typescript)
+- Lint: `<lint command>`
+- Typecheck: `<tsc --noEmit or project typecheck script>`
+- Test (single file): `<focused test command>`
+- Test (full): `<full test command>`
+
+### Python (skill: modern-python)
+- Lint and format: `<e.g. uv run ruff check . && uv run ruff format --check .>`
+- Typecheck: `<e.g. uv run ty check, or "none">`
+- Test (single file): `<e.g. uv run pytest path/to/test_file.py>`
+- Test (full): `<e.g. uv run pytest>`
+
+### Angular (skill: angular-developer)
+- Lint: `<e.g. ng lint, or "none">`
+- Typecheck: `<e.g. ng build --configuration development>`
+- Test (single file): `<e.g. ng test --include src/app/path/file.spec.ts>`
+- Test (full): `<e.g. ng test --watch=false>`
+- UI check: `<e.g. npx impeccable detect src/, or "none">`
+
 ## Layout
 - `<path>/` - <what lives here>
 - `<path>/` - <what lives here>
