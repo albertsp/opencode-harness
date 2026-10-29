@@ -1,0 +1,43 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "watcher": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.venv/**",
+      "**/target/**",
+      "**/.git/**",
+      "**/logs/**",
+      "**/coverage/**"
+    ]
+  },
+  "agent": {
+    "orchestrator": {
+      "mode": "primary",
+      "description": "Plans and coordinates development tasks. Delegates work to subagents and asks for approval at each checkpoint. Never edits files directly.",
+      "model": "opencode-go/claude-haiku-5-5",
+      "prompt": "{file:./.opencode/prompts/orchestrator.txt}",
+      "steps": 40,
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "ask",
+          "ls*": "allow",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow"
+        },
+        "task": {
+          "*": "deny",
+          "researcher": "allow",
+          "researcher_lite": "allow",
+          "coder": "allow",
+          "coder_lite": "allow",
+          "deep_fixer": "allow",
+          "reviewer": "allow"
+        }
+      }
+    }
+  }
+}

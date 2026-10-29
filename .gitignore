@@ -1,0 +1,14 @@
+# Credentials: never commit
+service.json
+*.key
+*.pem
+.env
+.env.*
+
+# Local state and caches
+node_modules/
+.opencode/state/
+.opencode/cache/
+logs/
+*.log
+.DS_Store

@@ -1,0 +1,14 @@
+# Heavy directories and build artifacts. Keep these out of agent context.
+node_modules/
+dist/
+build/
+.venv/
+venv/
+target/
+.git/
+logs/
+coverage/
+__pycache__/
+*.log
+*.min.js
+*.map
