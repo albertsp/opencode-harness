@@ -8,15 +8,15 @@ A multi-agent setup for OpenCode. One primary **orchestrator** plans work and as
 opencode.json                     Orchestrator config, watcher exclusions, task permissions
 .opencodeignore                   Heavy directories and build artifacts to keep out of context
 .gitignore                        Keeps credentials and local state out of git
+agents/
+  researcher.md                   Read-only research, paid-cheap model
+  researcher_lite.md              Read-only simple lookups, free model
+  coder.md                        Standard implementation, full access
+  coder_lite.md                   Low-risk implementation only, free model
+  deep_fixer.md                   Escalation for persistent bugs, strong model
+  reviewer.md                     Read-only audit, returns [APPROVED] or [CHANGES REQUESTED]
 .opencode/
   prompts/orchestrator.txt        Orchestrator system prompt (workflow, checkpoints, tier rules)
-  agents/
-    researcher.md                 Read-only research, paid-cheap model
-    researcher_lite.md            Read-only simple lookups, free model
-    coder.md                      Standard implementation, full access
-    coder_lite.md                 Low-risk implementation only, free model
-    deep_fixer.md                 Escalation for persistent bugs, strong model
-    reviewer.md                   Read-only audit, returns [APPROVED] or [CHANGES REQUESTED]
 ```
 
 `service.json` holds a credential. It is git-ignored and must stay out of any shared repository.
@@ -60,7 +60,7 @@ Every change is reviewed by `reviewer`, including free-tier changes.
 
 ## Configuration notes
 
-- **Agent discovery.** Subagents live in `.opencode/agents/`, which OpenCode loads when started in this directory. The global `agents/` folder in this directory is currently empty.
+- **Agent discovery.** Subagents live in `agents/` (the documented global location, `~/.config/opencode/agents/`). Verify with `opencode debug agents`. Putting them under `.opencode/agents/` did not load them.
 - **Prompt file.** `opencode.json` loads the orchestrator prompt via `{file:./.opencode/prompts/orchestrator.txt}`.
 - **Delegation.** `permission.task` denies all subagents except the six listed. Denied agents are hidden from the orchestrator's tool list.
 - **Reasoning levels.** Not configured. Some models support low/high/max reasoning, but the config key for OpenCode Go has not been verified.
