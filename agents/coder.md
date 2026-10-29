@@ -12,6 +12,10 @@ permission:
     "git reset --hard*": deny
     "git clean*": deny
     "rm -rf *": deny
+  skill:
+    "*": deny
+    "atomic-change": allow
+    "run-tests": allow
 ---
 
 You are a coding agent. You implement exactly the task you are given and nothing more.

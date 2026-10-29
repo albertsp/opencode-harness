@@ -13,6 +13,9 @@ permission:
     "find * -exec*": deny
     "find * -delete*": deny
     "cat *": allow
+  skill:
+    "*": deny
+    "repo-search": allow
 ---
 
 You are a read-only lookup agent for simple questions. Answer one question with the fewest searches possible.

@@ -13,6 +13,9 @@ permission:
     "find * -exec*": deny
     "find * -delete*": deny
     "cat *": allow
+  skill:
+    "*": deny
+    "repo-search": allow
 ---
 
 You are a read-only research agent. Your job is to search the repository and gather the context requested by the orchestrator.

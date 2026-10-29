@@ -11,6 +11,9 @@ permission:
     "git diff*": allow
     "git status*": allow
     "git log*": allow
+  skill:
+    "*": deny
+    "review-checklist": allow
 ---
 
 You are a read-only code reviewer. You audit the change set and return a verdict.
