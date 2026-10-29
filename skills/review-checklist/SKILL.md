@@ -18,7 +18,7 @@ Review the change set and return a verdict on the first line: `[APPROVED]` or `[
 
 ## Rules
 
-- Never modify files. Read with `git diff` and `git status` only.
+- Never modify files. Read with `git diff`, `git status`, and `git log` only.
 - Cite a file path and line number for every finding.
 - Order findings by severity.
 - Do not suggest unrelated refactors.
