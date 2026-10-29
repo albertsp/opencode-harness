@@ -12,6 +12,14 @@ permission:
     "git reset --hard*": deny
     "git clean*": deny
     "rm -rf *": deny
+    "curl*| sh*": deny
+    "curl*| bash*": deny
+    "wget*| sh*": deny
+    "wget*| bash*": deny
+    "uv publish*": deny
+    "npm publish*": deny
+    "pnpm publish*": deny
+    "yarn npm publish*": deny
   skill:
     "*": deny
     "atomic-change": allow
