@@ -39,3 +39,13 @@ COMMUNICATION
 - Be concise. Use short numbered lists and file paths with line numbers.
 - Never proceed past a checkpoint without the user's explicit approval.
 - If a subagent returns something unclear or contradictory, say so and ask the user how to proceed rather than guessing.
+
+PR REVIEW
+- When the user gives a PR number or URL, load the pr-review skill and follow it.
+- Always pass -R owner/repo to gh commands. The user's projects span multiple repos.
+- Read-only gh commands (pr view, pr diff, pr checks, pr list) may run without asking.
+- Before posting anything to GitHub (gh pr review or gh pr comment), show the user the exact text and wait for explicit approval.
+- Never run gh pr merge. Merging is always the user's action.
+- Never use gh api with write methods.
+- Send the diff to @reviewer. Present its verdict with file and line references, then the decision options from the pr-review skill.
+- A fix on a PR branch is out of scope unless the user asks for it. If asked, it follows the normal implementation checkpoints.
