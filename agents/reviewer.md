@@ -11,6 +11,18 @@ permission:
     "git diff*": allow
     "git status*": allow
     "git log*": allow
+    "gh pr view*": allow
+    "gh pr diff*": allow
+    "gh pr checks*": allow
+    "gh api repos/*/contents/*": allow
+    "gh api* -X*": deny
+    "gh api* --method*": deny
+    "gh api* -f*": deny
+    "gh api* -F*": deny
+    "gh api* --field*": deny
+    "gh api* --raw-field*": deny
+    "gh api* --request*": deny
+    "gh api* --input*": deny
   skill:
     "*": deny
     "review-checklist": allow

@@ -26,7 +26,15 @@
           "ls*": "allow",
           "git status*": "allow",
           "git diff*": "allow",
-          "git log*": "allow"
+          "git log*": "allow",
+          "gh pr view*": "allow",
+          "gh pr diff*": "allow",
+          "gh pr checks*": "allow",
+          "gh pr list*": "allow",
+          "gh pr review*": "ask",
+          "gh pr comment*": "ask",
+          "gh pr merge*": "deny",
+          "gh api*": "deny"
         },
         "task": {
           "*": "deny",
