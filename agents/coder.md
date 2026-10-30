@@ -20,6 +20,14 @@ permission:
     "npm publish*": deny
     "pnpm publish*": deny
     "yarn npm publish*": deny
+    "*| sh*": deny
+    "*|sh*": deny
+    "*| bash*": deny
+    "*|bash*": deny
+    "*| sudo*": deny
+    "*|sudo*": deny
+    "*| env*": deny
+    "*|env*": deny
   skill:
     "*": deny
     "atomic-change": allow
