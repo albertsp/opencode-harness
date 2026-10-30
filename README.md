@@ -102,6 +102,8 @@ The harness never merges, never uses `gh api` write methods, and never pushes to
 | `gh api` (read) | deny | allow for `contents` only |
 | `gh api` (write flags) | deny | deny |
 
+_Dry run: this flow was tested on this repository with a documentation-only pull request._
+
 ## Setting up on a new machine
 
 1. Clone the harness:
