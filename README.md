@@ -69,7 +69,7 @@ Every change is reviewed by `reviewer`, including free-tier changes.
 ## Known limits
 
 - `.opencodeignore` is not documented by OpenCode. Excluding heavy directories from the file watcher relies on `watcher.ignore` in `opencode.json`. Treat `.opencodeignore` as a convention, not a guarantee.
-- Bash permission patterns match command text. `grep *` also matches `grep x; rm file`. The prompts forbid chaining, but nothing enforces that. Only the orchestrator's `ask` default is a hard gate.
+- Bash permission patterns match command text, so chained commands such as `git status; rm x` are not blocked by the patterns. The prompts forbid chaining, but nothing enforces that. Only the orchestrator's `ask` default is a hard gate. The curl-pipe deny rules cover common forms but not every shell trick.
 - Free models (`beam-free`, `iceman-contributor-free`) have unknown quality, rate limits, and data-use policies. Check the policy before sending private code to them.
 - Budget tracking is advisory. The config cannot read your 20%-per-5-hours quota, so the orchestrator only counts its own delegations.
 - The agents have not yet been exercised end to end. Start with a small, low-risk change to validate the loop.
@@ -81,6 +81,50 @@ Every change is reviewed by `reviewer`, including free-tier changes.
 3. Confirm that the orchestrator asks for a plan checkpoint before delegating.
 4. Confirm that `coder_lite` receives the task only after you approve it.
 5. Confirm that `reviewer` returns `[APPROVED]` or `[CHANGES REQUESTED]`.
+
+## PR review flow
+
+1. Give the orchestrator a PR number or URL together with the repository (`owner/repo`).
+2. The orchestrator reads the PR with `gh pr view`, `gh pr diff`, and `gh pr checks`, always passing `-R owner/repo`.
+3. It reads the project `AGENTS.md` from the remote with `gh api` (read-only).
+4. `reviewer` audits the change set and returns `[APPROVED]` or `[CHANGES REQUESTED]`.
+5. You choose one: approve with a comment, request changes, comment only, or do nothing.
+6. Posting happens only after that choice, and the exact text is shown to you first.
+7. Merging is always done by you.
+
+The harness never merges, never uses `gh api` write methods, and never pushes to PR branches unless you ask. Fixes are out of scope for the review loop.
+
+| Command | Orchestrator | Reviewer |
+|---|---|---|
+| `gh pr view` / `gh pr diff` / `gh pr checks` | allow | allow |
+| `gh pr review` / `gh pr comment` | ask | deny |
+| `gh pr merge` | deny | deny |
+| `gh api` (read) | deny | allow for `contents` only |
+| `gh api` (write flags) | deny | deny |
+
+## Setting up on a new machine
+
+1. Clone the harness:
+
+   ```
+   git clone https://github.com/albertsp/opencode-harness.git ~/.config/opencode
+   ```
+
+2. Authenticate the GitHub CLI, then check the result:
+
+   ```
+   gh auth login
+   gh auth status
+   ```
+
+3. Recreate `service.json` only if it is still used. It is never committed.
+4. Verify the agents load:
+
+   ```
+   opencode debug agents
+   ```
+
+   The output should list `coder`, `coder_lite`, `deep_fixer`, `researcher`, `researcher_lite`, and `reviewer`.
 
 ## Maintenance
 
