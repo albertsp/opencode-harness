@@ -6,6 +6,7 @@ steps: 10
 permission:
   edit: deny
   webfetch: deny
+  "engram_mem_*": deny
   bash:
     "*": deny
     "git diff*": allow

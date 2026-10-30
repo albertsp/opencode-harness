@@ -6,6 +6,7 @@ steps: 15
 permission:
   edit: deny
   webfetch: deny
+  "engram_mem_*": deny
   bash:
     "*": deny
     "grep *": allow
